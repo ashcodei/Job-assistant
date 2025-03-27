@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobsAI Assistant</title>
+  <link rel="stylesheet" href="../content/content.css">
+</head>
+<body>
+  <!-- Floating Bubble Template -->
+  <div id="jobsai-bubble-template" style="display:none;">
+    <div class="jobsai-bubble">
+      <div class="jobsai-bubble-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFF" />
+        </svg>
+      </div>
+      <div class="jobsai-bubble-tooltip">JobsAI Assistant</div>
+    </div>
+  </div>
+
+  <!-- Sidebar Template -->
+  <div id="jobsai-sidebar-template" style="display:none;">
+    <div class="jobsai-sidebar">
+      <div class="jobsai-sidebar-header">
+        <div class="jobsai-sidebar-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#4F46E5" />
+          </svg>
+          <h2>JobsAI Assistant</h2>
+        </div>
+        <button id="jobsai-sidebar-close" class="jobsai-sidebar-close-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 3.5L3.5 12.5M3.5 3.5L12.5 12.5" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="jobsai-sidebar-content">
+        <!-- Loading State -->
+        <div id="jobsai-loading-template">
+          <div class="jobsai-loading">
+            <div class="jobsai-spinner"></div>
+            <p>Analyzing form fields...</p>
+          </div>
+        </div>
+        
+        <!-- Not Authenticated State -->
+        <div id="jobsai-not-auth-template" style="display:none;">
+          <div class="jobsai-message">
+            <p>Please sign in to use JobsAI Assistant</p>
+            <button id="jobsai-login-btn" class="jobsai-btn">Sign In</button>
+          </div>
+        </div>
+        
+        <!-- No Forms Detected State -->
+        <div id="jobsai-no-forms-template" style="display:none;">
+          <div class="jobsai-message">
+            <p>No form fields detected on this page.</p>
+          </div>
+        </div>
+        
+        <!-- User Info Template -->
+        <div id="jobsai-user-info-template" style="display:none;">
+          <div class="jobsai-user-info">
+            <div class="jobsai-user-avatar">
+              U
+            </div>
+            <div class="jobsai-user-details">
+              <p class="jobsai-user-name">User</p>
+              <p class="jobsai-user-email"></p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Stats Template -->
+        <div id="jobsai-stats-template" style="display:none;">
+          <div class="jobsai-stats">
+            <div class="jobsai-stats-item green">
+              <span class="jobsai-stats-count">0</span>
+              <span class="jobsai-stats-label">Auto-filled</span>
+            </div>
+            <div class="jobsai-stats-item yellow">
+              <span class="jobsai-stats-count">0</span>
+              <span class="jobsai-stats-label">Needs review</span>
+            </div>
+            <div class="jobsai-stats-item red">
+              <span class="jobsai-stats-count">0</span>
+              <span class="jobsai-stats-label">Manual input</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Field List Template -->
+        <div id="jobsai-field-list-template" style="display:none;">
+          <div class="jobsai-field-list">
+            <!-- Field items will be dynamically inserted here -->
+          </div>
+        </div>
+        
+        <!-- Field Item Template -->
+        <div id="jobsai-field-item-template" style="display:none;">
+          <div class="jobsai-field-item" data-field-id="">
+            <div class="jobsai-field-header">
+              <div class="jobsai-field-title">
+                <span class="confidence-indicator"></span>
+                <h3></h3>
+                <span class="required-badge" style="display:none;">Required</span>
+              </div>
+              <div class="jobsai-field-actions">
+                <button class="jobsai-goto-btn" data-field-id="">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 2V14M8 2L4 6M8 2L12 6" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="jobsai-field-content">
+              <div class="jobsai-suggestion-input">
+                <textarea class="jobsai-suggestion-textarea" data-field-id=""></textarea>
+                <div class="jobsai-suggestion-actions">
+                  <button class="jobsai-apply-btn" data-field-id="">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Footer Template -->
+        <div id="jobsai-footer-template" style="display:none;">
+          <div class="jobsai-footer">
+            <button id="jobsai-apply-all-btn" class="jobsai-btn jobsai-btn-primary">Apply All</button>
+          </div>
+        </div>
+        
+        <!-- Success Message Template -->
+        <div id="jobsai-success-message-template" style="display:none;">
+          <div class="jobsai-success-message">
+            All fields applied successfully!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // This script will be executed when the sidebar template is loaded into an iframe
+    // It can be used to communicate with the parent window (content script)
+    window.addEventListener('message', function(event) {
+      // Process messages from content script
+      if (event.data.action === 'initializeSidebar') {
+        // Message the parent that the sidebar is ready
+        window.parent.postMessage({ action: 'sidebarReady' }, '*');
+      }
+    });
+  </script>
+</body>
+</html>

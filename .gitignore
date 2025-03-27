@@ -1,0 +1,13 @@
+./server/.env
+./client/.env
+./server/node_modules
+./client/node_modules
+./server/dist
+./client/dist
+./chrome-extension/dist
+./chrome-extension/node_modules
+./chrome-extension/.env
+./chrome-extension/.babelrc
+./chrome-extension/package-lock.json
+./server/package-lock.json
+./client/package-lock.json               

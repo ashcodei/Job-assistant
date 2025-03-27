@@ -1,0 +1,342 @@
+/**
+ * JobsAI Popup Styles
+ */
+
+/* Base Styles and Variables */
+:root {
+    --jobsai-primary: #4F46E5;
+    --jobsai-primary-light: #818CF8;
+    --jobsai-primary-dark: #4338CA;
+    --jobsai-success: #10B981;
+    --jobsai-warning: #F59E0B;
+    --jobsai-danger: #EF4444;
+    --jobsai-gray: #6B7280;
+    --jobsai-gray-light: #E5E7EB;
+    --jobsai-text: #1F2937;
+    --jobsai-background: #FFFFFF;
+    --jobsai-border-radius: 12px;
+    --jobsai-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --jobsai-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    width: 320px;
+    height: 480px;
+    font-family: var(--jobsai-font-family);
+    background-color: var(--jobsai-background);
+    color: var(--jobsai-text);
+    overflow: hidden;
+  }
+  
+  .popup-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid var(--jobsai-gray-light);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logo h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--jobsai-primary);
+  }
+  
+  .version {
+    font-size: 12px;
+    color: var(--jobsai-gray);
+  }
+  
+  /* State Containers */
+  .state-container {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Welcome Message */
+  .welcome-message {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .welcome-message h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .welcome-message p {
+    color: var(--jobsai-gray);
+    animation: fadeIn 0.7s ease;
+  }
+  
+  /* Auth Options */
+  .auth-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeIn 0.9s ease;
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+  
+  .google-btn {
+    background-color: white;
+    color: var(--jobsai-text);
+    border: 1px solid var(--jobsai-gray-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .google-btn:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .website-btn {
+    background-color: var(--jobsai-primary);
+    color: white;
+  }
+  
+  .website-btn:hover {
+    background-color: var(--jobsai-primary-dark);
+  }
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--jobsai-gray);
+    font-size: 12px;
+    margin: 8px 0;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--jobsai-gray-light);
+  }
+  
+  .divider::before {
+    margin-right: 8px;
+  }
+  
+  .divider::after {
+    margin-left: 8px;
+  }
+  
+  /* Loading State */
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--jobsai-gray-light);
+    border-top: 4px solid var(--jobsai-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+  }
+  
+  #loading-state p {
+    text-align: center;
+    color: var(--jobsai-gray);
+  }
+  
+  /* Logged In State */
+  .user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: #F9FAFB;
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--jobsai-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 16px;
+  }
+  
+  .user-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .user-info p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--jobsai-gray);
+  }
+  
+  .feature-status {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+    animation: fadeIn 0.7s ease;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #F9FAFB;
+  }
+  
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+  
+  .feature-icon.success {
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+  
+  .feature-icon.warning {
+    background-color: rgba(245, 158, 11, 0.1);
+  }
+  
+  .feature-icon.error {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  .feature-text h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .feature-text p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--jobsai-gray);
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+    animation: fadeIn 0.9s ease;
+  }
+  
+  .primary-btn {
+    background-color: var(--jobsai-primary);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--jobsai-primary-dark);
+  }
+  
+  .secondary-btn {
+    background-color: var(--jobsai-gray-light);
+    color: var(--jobsai-text);
+  }
+  
+  .secondary-btn:hover {
+    background-color: #D1D5DB;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--jobsai-gray-light);
+    font-size: 12px;
+    color: var(--jobsai-gray);
+    text-align: center;
+  }
+  
+  .footer a {
+    color: var(--jobsai-primary);
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Button click effect */
+  .btn:active {
+    transform: scale(0.98);
+  }

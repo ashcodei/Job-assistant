@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobsAI Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#4F46E5" />
+        </svg>
+        <h1>JobsAI Settings</h1>
+      </div>
+      <span class="version">v1.0.0</span>
+    </header>
+
+    <main>
+      <section class="content">
+        <div class="setting-section">
+          <h2>General Settings</h2>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="enableExtension">Enable JobsAI</label>
+              <p class="description">Turn the extension on or off</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="enableExtension" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="autoDetectForms">Auto-detect job application forms</label>
+              <p class="description">Automatically detect and offer assistance on job application forms</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="autoDetectForms" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="showBubble">Show floating bubble</label>
+              <p class="description">Display the floating bubble on job application pages</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="showBubble" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="setting-section">
+          <h2>AI Assistant Settings</h2>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="confidenceThreshold">Confidence threshold for auto-fill</label>
+              <p class="description">Set the minimum confidence level for automatic field filling</p>
+            </div>
+            <div class="setting-control range-control">
+              <input type="range" id="confidenceThreshold" min="0" max="100" value="80" class="range">
+              <span class="range-value">80%</span>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="autoFillHighConfidence">Auto-fill high confidence fields</label>
+              <p class="description">Automatically fill fields with high confidence scores</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="autoFillHighConfidence" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="showConfidenceLevel">Show confidence indicators</label>
+              <p class="description">Display confidence level indicators for each field</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="showConfidenceLevel" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="setting-section">
+          <h2>Appearance</h2>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="bubblePosition">Bubble Default Position</label>
+              <p class="description">Set the default position of the floating bubble</p>
+            </div>
+            <div class="setting-control">
+              <select id="bubblePosition" class="select-input">
+                <option value="top-left">Top Left</option>
+                <option value="top-right">Top Right</option>
+                <option value="bottom-left" selected>Bottom Left</option>
+                <option value="bottom-right">Bottom Right</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="sidebarWidth">Sidebar Width</label>
+              <p class="description">Adjust the width of the sidebar panel</p>
+            </div>
+            <div class="setting-control range-control">
+              <input type="range" id="sidebarWidth" min="250" max="500" value="320" class="range">
+              <span class="range-value">320px</span>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="theme">Theme</label>
+              <p class="description">Choose the theme for the extension</p>
+            </div>
+            <div class="setting-control">
+              <select id="theme" class="select-input">
+                <option value="system">System Default</option>
+                <option value="light" selected>Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="setting-section">
+          <h2>Privacy</h2>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="shareFeedback">Share AI feedback</label>
+              <p class="description">Help improve AI suggestions by sharing your corrections</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="shareFeedback" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-label">
+              <label for="allowTracking">Allow anonymous usage statistics</label>
+              <p class="description">Help us improve by sending anonymous usage data</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch">
+                <input type="checkbox" id="allowTracking" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="sidebar">
+        <div class="account-info">
+          <div class="account-avatar">
+            <span id="avatar-initial">?</span>
+          </div>
+          <div class="account-details">
+            <h3 id="user-name">Not logged in</h3>
+            <p id="user-email"></p>
+          </div>
+        </div>
+        
+        <div class="sidebar-actions">
+          <button id="login-btn" class="btn primary-btn">Sign In</button>
+          <button id="logout-btn" class="btn secondary-btn" style="display: none;">Sign Out</button>
+          <a href="http://localhost:3000/dashboard" class="btn secondary-btn" target="_blank">Go to Dashboard</a>
+        </div>
+        
+        <div class="sidebar-section">
+          <h3>Resume Status</h3>
+          <div id="resume-status">
+            <p class="status-message">No resume uploaded</p>
+          </div>
+          <a href="http://localhost:3000/dashboard/resume" class="btn text-btn" target="_blank">Upload Resume</a>
+        </div>
+        
+        <div class="sidebar-section">
+          <h3>Need Help?</h3>
+          <a href="http://localhost:3000/help" class="btn text-btn" target="_blank">Help Center</a>
+          <a href="mailto:support@jobsai.com" class="btn text-btn">Contact Support</a>
+        </div>
+      </section>
+    </main>
+    
+    <footer>
+      <div class="footer-actions">
+        <button id="reset-btn" class="btn secondary-btn">Reset to Default</button>
+        <button id="save-btn" class="btn primary-btn">Save Changes</button>
+      </div>
+      <div class="footer-info">
+        <span>&copy; 2025 JobsAI. All rights reserved.</span>
+      </div>
+    </footer>
+  </div>
+  
+  <div id="save-notification" class="notification">
+    <div class="notification-content">
+      <span class="notification-icon">✓</span>
+      <span class="notification-message">Settings saved successfully!</span>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+/**
+ * JobsAI Content Script Styles
+ * - Styles for floating bubble, sidebar, and form highlights
+ */
+
+/* Base Styles and Variables */
+:root {
+    --jobsai-primary: #4F46E5;
+    --jobsai-primary-light: #818CF8;
+    --jobsai-primary-dark: #4338CA;
+    --jobsai-success: #10B981;
+    --jobsai-warning: #F59E0B;
+    --jobsai-danger: #EF4444;
+    --jobsai-gray: #6B7280;
+    --jobsai-gray-light: #E5E7EB;
+    --jobsai-text: #1F2937;
+    --jobsai-background: #FFFFFF;
+    --jobsai-bubble-size: 48px;
+    --jobsai-sidebar-width: 320px;
+    --jobsai-border-radius: 12px;
+    --jobsai-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --jobsai-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  /* Floating Bubble */
+  .jobsai-bubble {
+    position: fixed;
+    width: var(--jobsai-bubble-size);
+    height: var(--jobsai-bubble-size);
+    border-radius: 50%;
+    background-color: var(--jobsai-primary);
+    box-shadow: var(--jobsai-box-shadow);
+    z-index: 999999;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    top: 100px;
+    left: 20px;
+  }
+  
+  .jobsai-bubble:hover {
+    transform: scale(1.1);
+    background-color: var(--jobsai-primary-dark);
+  }
+  
+  .jobsai-bubble.dragging {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  
+  .jobsai-bubble-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .jobsai-bubble-icon svg {
+    width: 24px;
+    height: 24px;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .jobsai-bubble-tooltip {
+    position: absolute;
+    background-color: var(--jobsai-text);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    left: 60px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    font-family: var(--jobsai-font-family);
+  }
+  
+  .jobsai-bubble:hover .jobsai-bubble-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Sidebar */
+  .jobsai-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--jobsai-sidebar-width);
+    height: 100vh;
+    background-color: var(--jobsai-background);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999998;
+    font-family: var(--jobsai-font-family);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+  }
+  
+  .jobsai-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .jobsai-sidebar-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--jobsai-gray-light);
+  }
+  
+  .jobsai-sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .jobsai-sidebar-title h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--jobsai-text);
+  }
+  
+  .jobsai-sidebar-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .jobsai-sidebar-close-btn:hover {
+    background-color: var(--jobsai-gray-light);
+  }
+  
+  .jobsai-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+  
+  /* Loading indicator */
+  .jobsai-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+  }
+  
+  .jobsai-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--jobsai-gray-light);
+    border-top-color: var(--jobsai-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* User info section */
+  .jobsai-user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 12px;
+    background-color: var(--jobsai-gray-light);
+    border-radius: 8px;
+  }
+  
+  .jobsai-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--jobsai-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 12px;
+  }
+  
+  .jobsai-user-details {
+    flex: 1;
+  }
+  
+  .jobsai-user-name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .jobsai-user-email {
+    margin: 0;
+    font-size: 12px;
+    color: var(--jobsai-gray);
+  }
+  
+  /* Stats display */
+  .jobsai-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .jobsai-stats-item {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 4px;
+  }
+  
+  .jobsai-stats-item.green {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--jobsai-success);
+  }
+  
+  .jobsai-stats-item.yellow {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--jobsai-warning);
+  }
+  
+  .jobsai-stats-item.red {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--jobsai-danger);
+  }
+  
+  .jobsai-stats-count {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .jobsai-stats-label {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  /* Field list */
+  .jobsai-field-list {
+    margin-bottom: 16px;
+  }
+  
+  .jobsai-field-item {
+    border: 1px solid var(--jobsai-gray-light);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  
+  .jobsai-field-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .jobsai-field-header {
+    padding: 12px 16px;
+    background-color: rgba(229, 231, 235, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .jobsai-field-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .jobsai-field-title h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--jobsai-text);
+  }
+  
+  .confidence-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+  }
+  
+  .confidence-indicator.high {
+    background-color: var(--jobsai-success);
+    color: white;
+  }
+  
+  .confidence-indicator.medium {
+    background-color: var(--jobsai-warning);
+    color: white;
+  }
+  
+  .confidence-indicator.low {
+    background-color: var(--jobsai-danger);
+    color: white;
+  }
+  
+  .required-badge {
+    font-size: 10px;
+    background-color: var(--jobsai-danger);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  
+  .jobsai-field-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .jobsai-goto-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .jobsai-goto-btn:hover {
+    background-color: var(--jobsai-gray-light);
+  }
+  
+  .jobsai-field-content {
+    padding: 12px 16px;
+  }
+  
+  .jobsai-suggestion-input {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .jobsai-suggestion-textarea {
+    width: 100%;
+    min-height: 60px;
+    border: 1px solid var(--jobsai-gray-light);
+    border-radius: 6px;
+    padding: 8px;
+    font-family: var(--jobsai-font-family);
+    font-size: 14px;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  
+  .jobsai-suggestion-textarea:focus {
+    outline: none;
+    border-color: var(--jobsai-primary);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+  }
+  
+  .jobsai-suggestion-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+  
+  .jobsai-apply-btn {
+    background-color: var(--jobsai-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .jobsai-apply-btn:hover {
+    background-color: var(--jobsai-primary-dark);
+  }
+  
+  /* Login message */
+  .jobsai-message {
+    text-align: center;
+    padding: 32px 16px;
+  }
+  
+  .jobsai-message p {
+    margin-bottom: 16px;
+    color: var(--jobsai-gray);
+  }
+  
+  /* Buttons */
+  .jobsai-btn {
+    background-color: var(--jobsai-gray-light);
+    color: var(--jobsai-text);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .jobsai-btn:hover {
+    background-color: #D1D5DB;
+  }
+  
+  .jobsai-btn-primary {
+    background-color: var(--jobsai-primary);
+    color: white;
+  }
+  
+  .jobsai-btn-primary:hover {
+    background-color: var(--jobsai-primary-dark);
+  }
+  
+  /* Footer */
+  .jobsai-footer {
+    padding: 16px;
+    border-top: 1px solid var(--jobsai-gray-light);
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--jobsai-background);
+  }
+  
+  /* Form field highlight */
+  .jobsai-highlight {
+    box-shadow: 0 0 0 2px var(--jobsai-primary) !important;
+    transition: box-shadow 0.3s ease !important;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .jobsai-applied {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    transition: background-color 0.3s ease !important;
+  }
+  
+  /* Success message */
+  .jobsai-success-message {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: var(--jobsai-success);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--jobsai-box-shadow);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000000;
+  }
+  
+  .jobsai-success-message.show {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  /* Animations */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .jobsai-sidebar {
+      width: 280px;
+    }
+  }
